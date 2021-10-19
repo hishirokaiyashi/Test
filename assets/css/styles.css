@@ -1,0 +1,617 @@
+/* Reset CSS */
+* {
+    /* Emmet */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; /* tính toán kích thước */
+}
+
+html {
+    scroll-behavior: smooth; /* để khi bấm vào band tour contact có hiệu ứng cuộn */
+    font-family: Helvetica, Arial, sans-serif; /* chữ không chân */
+} /* chỉnh font cho cả trang */
+/* 
+1. Từ ngoài vào trong
+2. Từ trên xuống dưới
+3. Từ tổng quan đến chi tiết
+*/
+
+/* crt+ / 
+ 1. Vị trí
+ 2. Kích thước(width, height)
+ 3. Màu sắc
+ 4. Kiểu dáng(kiểu chữ, hình tròn, vuông, ...)
+*/
+/*class phụ*/
+
+
+
+/* common*/
+.clear {
+    clear: both;
+} 
+
+.text-white {
+    color: #fff !important;
+} /* dùng để chữ màu trắng */
+
+.row {
+    margin-left: -8px;
+    margin-right: -8px;
+    /* width:100%; */
+}
+.row::after {
+    content:"";
+    display:block;
+    clear:both;
+}
+
+.col {
+    float: left;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.col-half {
+    width: 50%;
+    /* margin: 0 20px 0 0; */
+}
+
+.col-full {
+    width: 100%;
+    /* margin: 0 20px 0 0; */
+}
+
+
+.col-third {
+    width: 33.33333%;
+    box-sizing: border-box;
+}
+
+.mt-8 {
+    margin-top: 8px !important;
+}
+
+.mt-16 {
+    margin-top: 16px !important;
+}
+
+.mt-32 {
+    margin-top: 32px !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.margin-bottom {
+    margin-bottom: 15px !important;
+}
+
+
+
+/* .tablet-4-uses {
+    padding-left: 16px;
+    padding-right: 16px;
+} */
+#main {
+    /* overflow: hidden; */
+}
+
+#header {
+    position: fixed; /* để cuộn header di chuyển theo */
+    top: 0; /*header dính ở trên cùng */
+    left: 0; /*header đc kéo qua bên trái chiếm hết trang */
+    right: 0; /*/*header đc kéo qua bên phải chiếm hết trang */
+    height: 46px;
+    background-color: #000; /* #000 là màu đen */
+    z-index: 1;
+    /*overflow: hidden; /*ẩn đi những thẻ con bị dư ra ngoài header*/
+}
+
+#nav {
+    display: inline-block; /* làm cho phần chữ trắng bên trái chỉ lấy kích thước = chính nó */
+}
+
+#nav, .subnav {
+    list-style-type: none; /* bỏ 3 dấu chấm tròn xuất hiện ở các dòng (cả nav và subnav) */
+}
+
+#nav > li {
+    display: inline-block; /* sửa trực tiếp đến thẻ con của #nav là để khi trỏ vào thì viền xàm chứa cả chữ */
+}
+
+#nav li {
+    
+    position: relative;
+} /* Truy vấn đến tất cả thẻ li là con của nav */
+#nav > li > a {
+    color: #fff;
+    text-transform: uppercase; /* Viết hoa tất cả các chữ của thẻ a cấp của li: Home, Band, Tour, Contact, More */
+} /* chỉ lấy thẻ a là con trực tiếp của thẻ li và thẻ li con trực tiếp của nav 
+     Ở đây là 4 thẻ có nội dung là: Home, Band, Tour, Contact*/
+#nav li a {
+    
+    text-decoration: none; /* bỏ gạch chân */
+    line-height: 46px; /* đặt chiều cao = header */
+    padding: 0 24px; /* trên dưới = 0, trái phải = 24px */
+    display: block; /* xét kích thước */
+} /* Truy vấn đến tất cả thẻ a là con của li và li là con của nav */
+
+#nav li:hover .subnav{
+    display: block; /* hiện 3 thẻ đã ẩn lên khi trỏ chuột vào More */
+}
+
+#nav .subnav li:hover a /* gộp chung 2 code với nhau*/,
+#nav > li:hover > a {
+    color: #000;
+    background-color: #ccc;
+}/* Truy vấn đến tất cả thẻ a là con của li và li là con của nav */
+ /* Đổi màu chữ với nền, Khi di chuột vào ô khác, đối tượng cha không mất màu */
+
+#nav .subnav { 
+    min-width: 160px;   /* cả khối ul 3 dòng của More không phải từng phần */
+    top: 100%; /* chắc chắn rằng 3 thẻ mở rộng của More nằm đúng vị trí */
+    left: 0; /* chắc chắn rằng 3 thẻ mở rộng của More nằm đúng vị trí */
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0 ,0) ; /* đổ bóng của 3 thẻ a của More : 
+                0 đầu tiên là không đổ trên hoặc dưới, 0 tiếp theo là không để trái hoặc phải
+                10px là độ đậm của bóng đổ  
+                tham số sau là chỉ màu của bóng: đen*/
+    display: none;/* ẩn các thành phần con của thẻ more đi */
+} /* ghi nav. subnav để tránh trừng */
+
+#nav .subnav a {
+    /* min-width: 160px; */
+    color: #000;
+    padding: 0 16px; /* padding này dùng để cách chữ thụt dòng vào */
+    line-height: 38px; /* độ cao của thẻ a cấp con lấy phần content là 22 + 16 của phần padding*/
+} /*lấy các thẻ a của lớp subnav là con của id nav*/
+
+#nav .nav-arrow-down {
+    font-size: 12px; /*nhỏ icon lại*/
+}
+#header .menu-btn-mobile {
+    float: right; 
+    /*dùng để đẩy nút search qua phải đồng thời làm
+     cho nút search mất tính chất inline-block */
+    padding: 0 21px; /* dùng để khi di chuột vào nút search
+    thì mảng xám to ra đúng như trên web */
+    position:absolute;
+    top:0;
+    right:0;
+    display:none;
+}
+#header .search-btn {
+    float: right; 
+    /*dùng để đẩy nút search qua phải đồng thời làm
+     cho nút search mất tính chất inline-block */
+    padding: 0 21px; /* dùng để khi di chuột vào nút search
+    thì mảng xám to ra đúng như trên web */
+    position:absolute;
+    top:0;
+    right:0;
+    
+}
+#header .menu-btn-mobile:hover{
+    background-color: #ccc;
+    
+}
+
+#header .menu-btn-mobile:hover .menu-icon{
+    color:#000;
+}
+
+#header .search-btn:hover{
+    background-color: #f44336; /* khi di chuột vào thành màu đỏ */
+    cursor: pointer;
+}
+#header .menu-icon,
+#header .search-icon {
+    color: #fff; /* đổi màu search */
+    font-size: 20px; /* đổi size nút search */
+    line-height: 46px; /* đẩy nút search xuống cho = chữ */
+}
+
+#slider {
+    position: relative; /* đặt slider làm thẻ cha */
+    margin-top: 46px; /*lề slider cách top 46px */
+    padding-top: 50%; /*padding-top:50%; : nếu giá trị sau là % , thì sẽ lấy 50% chiều ngang của chính nó */
+    background: url('../img/slider/slider1.jpg') top center / cover no-repeat;
+}
+
+#slider .textcontent {
+    position: absolute; /* thẻ con ăn theo thẻ cha slider */
+    bottom: 47px; /* cách mép slider dưới 47px */
+    color: #fff; 
+    /* left: 50%;
+    /* transform: translateX(-50%); */  
+    width: 100%; /* để 2 dòng chữ ở giữa hình */
+    text-align: center; /* để chữ NewYork ở giữa */
+}
+
+#slider .headingslider {
+    font-size: 24px; /* cỡ chữ NewYord là 24px*/
+    font-weight: 500; /* độ dày của chữ giảm 500 */
+}
+
+#slider .text-decription {
+    font-size: 15px;
+    margin-top: 25px; /* Cách chữ NewYork 25px */
+    text-shadow: 0 0 1px #000; /* làm cho chữ có bóng đậm*/
+}
+
+#content {
+    
+   /* overflow: hidden; */
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+#content .content-section {
+    width: 800px;
+    max-width: 100%;
+    padding: 64px 0 112px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px; /* Tablet-fix*/
+    padding-right: 16px; /* Tablet-fix*/
+    /* padding-left:16px; */
+ }
+
+#content .heading-section {
+    text-align: center;
+    font-weight: 500; 
+    letter-spacing: 4px; /* chữ the band cách nhau ra cho đẹp */
+    font-size: 30px;
+}
+
+#content .section-sub-heading {
+    margin-top: 25px;
+    text-align: center;
+    font-style: italic;
+    font-size: 15px;
+    opacity: 0.6;
+}
+
+#content .about-text-theband {
+    margin-top: 25px;
+    text-align: justify;
+    font-size: 15px;
+    line-height:1.4;
+}
+
+#content .members-list{
+    margin-top: 32px;
+}
+
+/*#content .members-iteam {
+    float: left;  kéo cả 3 ảnh lên cùng 1 hàng 
+      width: 33.33333%; để mép của ảnh bằng đoạn văn ở trên  
+    text-align: center; 
+} */
+
+.member-name {
+    
+    font-size: 15px;
+}
+
+ .member-avatar {
+    /* margin-top: 15px; */
+    width: 154px;
+    border-radius: 4px; /* bo góc ảnh */
+}
+
+#content .tour-section {
+    background-color: #000;
+}
+
+
+.ticket-list {
+    margin-top: 40px;
+    background-color: #fff;
+    list-style: none;
+}
+
+.ticket-list li{
+    font-size: 15px;
+    padding: 11px 16px;
+    border: 1px solid #ccc;
+    color: #757575;
+}
+
+.ticket-list .sold-out {
+    background-color: #f44336;
+    color: #fff;
+    padding: 3px 4px;
+    margin-left: 16px;
+    font-size: 15px;
+   
+}
+
+.ticket-list .quantity {
+    color: #fff;
+    font-size: 15px;
+    background-color: #000;
+    float: right;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    margin-top: -3px;
+}
+
+.place-list {
+       margin-top: 16px;
+       /* margin-bottom: 48px; */
+       
+}
+
+/* .tour-place-item { */
+    /* float: left; */
+    /* width: 33.33333%; */
+    /* padding: 0 8px; */
+    /* box-sizing: border-box; để ảnh lên cùng 1 hàng không bị xuống dòng khi xài paddding */
+    /* background-color: #fff; */
+/* } */
+
+.place-img {
+     width: 100%; /*hình nằm gọn trong phần tour */
+     display: block; /* bỏ khoảng cách giữa hình với chữ */
+}
+
+.buy-tickets-btn:hover,.place-img:hover {
+    opacity: 0.6;
+    background-color: #757575;
+}
+
+.place-content-body {
+    background-color: #fff;
+    padding: 16px 16px;
+    font-size: 15px;
+    
+}
+
+.content-place {
+    font-size: 15px;
+    font-weight: 600px;
+}
+
+.tour-date {
+    margin-top: 15px;
+    opacity: 0.6;
+}
+
+.tour-decription {
+    margin-top: 15px;
+    line-height: 1.4;
+}
+
+.buy-tickets-btn {
+    text-decoration: none;
+    color: #fff;
+    background-color: #000;
+    padding: 9px 16px;
+    display: inline-block;
+    margin-top: 15px;
+}
+/* CONTACT */
+.contact-content {
+    /* display: flex; */
+    
+}
+
+.form-half {
+    /* display: flex; */
+    
+}
+
+.contact-content {
+    margin-top: 47px;
+}
+
+.contact-info {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.contact-info a {
+    color: #101aef;
+    opacity: 0.8;
+}
+
+.contact-info a:hover {
+    opacity: 1;
+}
+
+.contact-info i[class*="ti"] {
+    width: 30px;
+    display: inline-block;
+} /* tìm các thẻ i có class là ti. */
+
+/* .contact-form .form-half {
+    font-size: 15px;
+}
+.contact-form .form-full {
+    font-size: 15px;
+} */
+
+.contact-content {
+    overflow: hidden;
+}
+.contact-form .form-control {
+    padding: 8px;
+    border: 1px solid #ccc;
+    width:100%;
+}
+
+.contact-form .input-send {
+    background: #000;
+    color: #fff;
+    border: 1px solid #000;
+    padding: 10px 16px;
+    float: right;
+    margin-top: 16px;
+    border:none;
+    -webkit-appearance: none; /* dùng cho iphone fix nut send to hơn */
+}
+
+.contact-form .input-send:hover {
+    background: #ccc;
+    color: #000;
+    cursor:pointer;
+    border:none;
+}
+
+/* MAP Section*/
+.map-section img{
+    width: 100%;
+    
+}
+/* FOOTER */
+#footer {
+    padding: 64px 16px;
+    text-align: center;
+}
+
+#footer .social-list-icon {
+    font-size: 24px;
+}
+
+#footer .social-list-icon a {
+    color:rgba( 0, 0, 0, 0.6);
+    text-decoration: none;
+}
+
+#footer .copy-right a,#footer .social-list-icon a:hover {
+    color:rgba( 0, 0, 0, 0.3);
+}
+
+#footer .copy-right {
+    margin-top: 15px;
+    color:rgba( 0, 0, 0, 0.6);
+    font-size: 15px;
+}
+
+#footer .copy-right a{
+    color:rgba( 0, 0, 0, 0.6);
+}
+/* MODAL */
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background:rgba( 0, 0, 0, 0.4);
+    display: none; /*để element nằm giữa */
+    align-items: center; /*căn giữa chiều cao */
+    justify-content: center; /*căn giữa chiều ngang*/
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-container {
+    background: #fff;
+    width: 900px;
+    min-height: 200px;
+    position: relative;
+    max-width: calc(100% -32px); 
+    animation: modal-transition ease 0.8s; /* hiệu ứng hiện modal */
+}
+
+.modal-header {
+    background: #009688;
+    height: 130px;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #fff;
+    display: flex;
+}
+
+.bag-icon {
+    margin-right: 16px;
+}
+
+.modal-close {
+    position: absolute ;
+    right: 0;
+    top: 0;
+    color: #fff;
+    padding: 12px;
+    cursor: pointer;
+    opacity: 0.9 ;
+
+}
+.buy-tickets:hover,.modal-close:hover{
+    opacity: 1;
+    background: #ccc;
+    color: #000;
+}
+
+.modal-body {
+    padding: 16px;
+    
+}
+
+.modal-label {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.modal-input {
+    border: 1px solid #ccc;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box; /* chiều ngang của content + padding+ border = tổng kích thước mong muốn */
+    margin-bottom: 24px;
+}
+
+.buy-tickets {
+    background: #009688;
+    color: #fff;
+    font-size: 15px;
+    padding: 18px;
+    width: 100%;
+    border-style: none;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.modal-footer {
+    padding: 16px;
+}
+
+.modal-help {
+    right: 0;
+    text-align: right;
+}
+
+.modal-help a {
+    color: #2196F3;
+}
+
+@keyframes modal-transition {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} /* dùng để chuyển động animation cho modal */
+
+
+#footer {
+
+}
+
